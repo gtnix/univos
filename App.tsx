@@ -109,9 +109,9 @@ const App: React.FC = () => {
         {/* Logo Area */}
         <div className="h-16 flex items-center px-6 border-b border-slate-100 dark:border-slate-800">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3 shadow-sm">
-             <span className="text-white font-bold text-sm">CE</span>
+             <span className="text-white font-bold text-sm">UV</span>
           </div>
-          <span className="font-bold text-slate-800 dark:text-slate-100 tracking-tight">TalentOS</span>
+          <span className="font-bold text-slate-800 dark:text-slate-100 tracking-tight">UNIVOS</span>
         </div>
 
         {/* Navigation Menu */}
@@ -174,7 +174,7 @@ const App: React.FC = () => {
         <header className="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 md:px-8 sticky top-0 z-10 flex-shrink-0">
             <div className="flex items-center md:hidden">
               <Menu size={24} className="text-slate-600 dark:text-slate-300 mr-4" />
-              <span className="font-bold text-slate-800 dark:text-slate-100">TalentOS</span>
+              <span className="font-bold text-slate-800 dark:text-slate-100">UNIVOS</span>
             </div>
             
             {/* Context Breadcrumb or Search */}

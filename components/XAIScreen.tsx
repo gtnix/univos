@@ -60,7 +60,7 @@ const XAIScreen: React.FC<XAIScreenProps> = ({ isDarkMode }) => {
                      <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg ring-4 ring-primary/10 dark:ring-primary/20">
                         <Cpu size={24} />
                     </div>
-                    <h4 className="font-bold text-primary dark:text-primary-light mt-4 text-center">3. Cálculo CEE</h4>
+                    <h4 className="font-bold text-primary dark:text-primary-light mt-4 text-center">3. Cálculo UNIVOS</h4>
                     <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-2 px-2">
                         Ponderação de <span className="font-medium text-primary dark:text-primary-light">Distância Percorrida</span> vs. Oportunidades Disponíveis.
                     </p>

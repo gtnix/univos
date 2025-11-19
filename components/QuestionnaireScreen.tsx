@@ -52,7 +52,7 @@ const QuestionnaireScreen: React.FC<QuestionnaireScreenProps> = ({ isDarkMode = 
             <div className="mb-8">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Sua Jornada</h2>
                 <p className="text-slate-500 dark:text-slate-400">
-                    Estas perguntas opcionais ajudam nosso <span className="font-semibold text-primary dark:text-primary-light">Motor de Equidade Contextual</span> a entender melhor suas conquistas em relação às oportunidades que você teve.
+                    Estas perguntas opcionais ajudam nosso <span className="font-semibold text-primary dark:text-primary-light">UNIVOS</span> a entender melhor suas conquistas em relação às oportunidades que você teve.
                 </p>
             </div>
 

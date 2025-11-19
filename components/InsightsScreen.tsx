@@ -31,7 +31,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ isDarkMode = false }) =
       <div className="flex justify-between items-center mb-8 bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Resultados Executivos: Q3 2024</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Impacto do Contextual Equity Engine na organização.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Impacto do UNIVOS na organização.</p>
         </div>
         <div className="flex gap-4">
             <div className="text-right">
@@ -40,7 +40,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ isDarkMode = false }) =
             </div>
             <div className="h-10 w-px bg-slate-200 dark:bg-slate-700"></div>
             <div className="text-right">
-                 <p className="text-xs text-slate-400 uppercase">Contratações via CEE</p>
+                 <p className="text-xs text-slate-400 uppercase">Contratações via UNIVOS</p>
                  <p className="font-semibold text-primary dark:text-primary-light">142 Talentos</p>
             </div>
         </div>
@@ -77,7 +77,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ isDarkMode = false }) =
                               color: isDarkMode ? '#F1F5F9' : '#000'
                           }}
                         />
-                        <Bar dataKey="cee" fill="#0B5B6F" radius={[4,4,0,0]} name="Contratados CEE" />
+                        <Bar dataKey="cee" fill="#0B5B6F" radius={[4,4,0,0]} name="Contratados UNIVOS" />
                         <Bar dataKey="legacy" fill={legacyBarColor} radius={[4,4,0,0]} name="Benchmark Anterior" />
                          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 12, fill: tickColor}} />
                     </BarChart>
@@ -126,7 +126,7 @@ const InsightsScreen: React.FC<InsightsScreenProps> = ({ isDarkMode = false }) =
                 <div className="flex-1">
                     <h3 className="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">Ampliação do Talent Pool</h3>
                     <p className="text-slate-500 dark:text-slate-400 text-sm">
-                        Acesso a demografias anteriormente filtradas por "rejeição de faculdade de elite". O CEE diversificou a entrada sem baixar a barra técnica.
+                        Acesso a demografias anteriormente filtradas por "rejeição de faculdade de elite". O UNIVOS diversificou a entrada sem baixar a barra técnica.
                     </p>
                 </div>
             </div>

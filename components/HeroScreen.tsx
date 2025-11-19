@@ -32,7 +32,7 @@ const HeroScreen: React.FC<HeroScreenProps> = ({ onNext, isDarkMode }) => {
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <Layers className="text-white" size={18} />
           </div>
-          <span className="text-slate-900 dark:text-white font-bold text-xl tracking-tight">TalentOS <span className="font-normal text-slate-500 dark:text-slate-400">| Enterprise</span></span>
+          <span className="text-slate-900 dark:text-white font-bold text-xl tracking-tight">UNIVOS <span className="font-normal text-slate-500 dark:text-slate-400">| Enterprise</span></span>
         </div>
         <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">Solução de Recrutamento Inteligente</div>
       </header>
@@ -44,7 +44,7 @@ const HeroScreen: React.FC<HeroScreenProps> = ({ onNext, isDarkMode }) => {
         </div>
         
         <h1 className="text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
-          Contextual Equity Engine
+          UNIVOS
         </h1>
         
         <h2 className="text-3xl text-slate-500 dark:text-slate-400 font-light mb-10 leading-snug">
