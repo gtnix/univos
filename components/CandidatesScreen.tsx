@@ -12,6 +12,114 @@ interface CandidatesScreenProps {
   onSelectCandidate: (id: number) => void;
 }
 
+// --- Helper Components Moved to Top for Type Safety ---
+
+// Unified Standard Chip Component
+interface StandardChipProps {
+    children?: React.ReactNode;
+    color?: string;
+    className?: string;
+    title?: string;
+}
+
+const StandardChip: React.FC<StandardChipProps> = ({ children, color = 'slate', className = '', title }) => {
+    // Base style ensures uniform height, padding, and border radius for ALL chips
+    const baseStyle = "inline-flex items-center justify-center px-2.5 py-1 rounded-md text-[11px] font-medium border transition-colors select-none";
+    
+    const colors: Record<string, string> = {
+        slate: 'bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
+        white: 'bg-white text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 shadow-sm', // For Skills
+        
+        // CEE / Tags colors - Desaturated & Harmonized
+        blue: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800/30',
+        purple: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800/30',
+        amber: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/30',
+        emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800/30',
+        rose: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/20 dark:text-rose-300 dark:border-rose-800/30',
+        indigo: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-300 dark:border-indigo-800/30',
+        cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-900/20 dark:text-cyan-300 dark:border-cyan-800/30',
+        orange: 'bg-orange-50 text-orange-800 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800/30',
+        teal: 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-900/20 dark:text-teal-300 dark:border-teal-800/30',
+    };
+
+    const chosenStyle = colors[color] || colors['slate'];
+
+    return (
+        <span className={`${baseStyle} ${chosenStyle} ${className}`} title={title}>
+            {children}
+        </span>
+    );
+};
+
+// Specialized Chip for Stages
+const StageChip: React.FC<{ stage: string }> = ({ stage }) => {
+    let color = 'slate';
+    let dotColor = 'bg-slate-400';
+    
+    switch(stage) {
+        case 'Novo': 
+            color = 'slate'; 
+            dotColor = 'bg-slate-400';
+            break;
+        case 'Triagem': 
+            color = 'blue'; 
+            dotColor = 'bg-blue-500';
+            break;
+        case 'Teste Técnico': 
+            color = 'purple'; 
+            dotColor = 'bg-purple-500';
+            break;
+        case 'Entrevista': 
+        case 'Entrevista Técnica':
+            color = 'amber'; 
+            dotColor = 'bg-amber-500';
+            break;
+        case 'Oferta': 
+            color = 'emerald'; 
+            dotColor = 'bg-emerald-500';
+            break;
+    }
+
+    return (
+        <StandardChip color={color}>
+            <span className={`w-1.5 h-1.5 rounded-full mr-2 ${dotColor}`}></span>
+            {stage}
+        </StandardChip>
+    )
+}
+
+const SummaryCard = ({ title, value, subtext, icon: Icon, color }: any) => {
+    const colors: any = {
+        blue: 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800',
+        emerald: 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800',
+        indigo: 'text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/20 border-indigo-100 dark:border-indigo-800',
+    };
+
+    return (
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
+            <div className={`p-3 rounded-lg border ${colors[color]}`}>
+                <Icon size={20} strokeWidth={2.5} />
+            </div>
+            <div className="flex-1">
+                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{title}</p>
+                <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{value}</span>
+                    <span className="text-xs font-medium text-slate-400">{subtext}</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+const TableHeader = ({ label, align = 'left', highlight = false }: { label: string, align?: 'left' | 'right', highlight?: boolean }) => (
+    <th className={`px-6 py-3 text-[10px] font-semibold uppercase tracking-wider ${align === 'right' ? 'text-right' : 'text-left'} ${highlight ? 'text-primary dark:text-primary-light' : 'text-slate-500 dark:text-slate-400'}`}>
+        <div className={`flex items-center gap-1 group cursor-pointer ${align === 'right' ? 'justify-end' : 'justify-start'}`}>
+            {label}
+            <ChevronDown size={12} className={`transition-all text-slate-300 group-hover:text-slate-500 ${highlight ? 'opacity-100 text-primary/50' : 'opacity-0 group-hover:opacity-100'}`} />
+        </div>
+    </th>
+);
+
 // Extended Mock Data specifically for this detailed table view
 const DETAILED_CANDIDATES = [
   { 
@@ -427,113 +535,5 @@ const CandidatesScreen: React.FC<CandidatesScreenProps> = ({ isDarkMode = false,
     </div>
   );
 };
-
-// --- Sub-components with Enhanced Aesthetics ---
-
-const SummaryCard = ({ title, value, subtext, icon: Icon, color }: any) => {
-    const colors: any = {
-        blue: 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800',
-        emerald: 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800',
-        indigo: 'text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/20 border-indigo-100 dark:border-indigo-800',
-    };
-
-    return (
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
-            <div className={`p-3 rounded-lg border ${colors[color]}`}>
-                <Icon size={20} strokeWidth={2.5} />
-            </div>
-            <div className="flex-1">
-                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{title}</p>
-                <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{value}</span>
-                    <span className="text-xs font-medium text-slate-400">{subtext}</span>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-const TableHeader = ({ label, align = 'left', highlight = false }: { label: string, align?: 'left' | 'right', highlight?: boolean }) => (
-    <th className={`px-6 py-3 text-[10px] font-semibold uppercase tracking-wider ${align === 'right' ? 'text-right' : 'text-left'} ${highlight ? 'text-primary dark:text-primary-light' : 'text-slate-500 dark:text-slate-400'}`}>
-        <div className={`flex items-center gap-1 group cursor-pointer ${align === 'right' ? 'justify-end' : 'justify-start'}`}>
-            {label}
-            <ChevronDown size={12} className={`transition-all text-slate-300 group-hover:text-slate-500 ${highlight ? 'opacity-100 text-primary/50' : 'opacity-0 group-hover:opacity-100'}`} />
-        </div>
-    </th>
-);
-
-// Unified Standard Chip Component
-interface StandardChipProps {
-    children: React.ReactNode;
-    color?: string;
-    className?: string;
-    title?: string;
-}
-
-const StandardChip = ({ children, color = 'slate', className = '', title }: StandardChipProps) => {
-    // Base style ensures uniform height, padding, and border radius for ALL chips
-    const baseStyle = "inline-flex items-center justify-center px-2.5 py-1 rounded-md text-[11px] font-medium border transition-colors select-none";
-    
-    const colors: any = {
-        slate: 'bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
-        white: 'bg-white text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 shadow-sm', // For Skills
-        
-        // CEE / Tags colors - Desaturated & Harmonized
-        blue: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800/30',
-        purple: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800/30',
-        amber: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/30',
-        emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800/30',
-        rose: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/20 dark:text-rose-300 dark:border-rose-800/30',
-        indigo: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-300 dark:border-indigo-800/30',
-        cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-900/20 dark:text-cyan-300 dark:border-cyan-800/30',
-        orange: 'bg-orange-50 text-orange-800 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800/30',
-        teal: 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-900/20 dark:text-teal-300 dark:border-teal-800/30',
-    };
-
-    const chosenStyle = colors[color] || colors['slate'];
-
-    return (
-        <span className={`${baseStyle} ${chosenStyle} ${className}`} title={title}>
-            {children}
-        </span>
-    );
-};
-
-// Specialized Chip for Stages (inherits StandardChip style but handles status mapping)
-const StageChip = ({ stage }: { stage: string }) => {
-    let color = 'slate';
-    let dotColor = 'bg-slate-400';
-    
-    switch(stage) {
-        case 'Novo': 
-            color = 'slate'; 
-            dotColor = 'bg-slate-400';
-            break;
-        case 'Triagem': 
-            color = 'blue'; 
-            dotColor = 'bg-blue-500';
-            break;
-        case 'Teste Técnico': 
-            color = 'purple'; 
-            dotColor = 'bg-purple-500';
-            break;
-        case 'Entrevista': 
-        case 'Entrevista Técnica':
-            color = 'amber'; 
-            dotColor = 'bg-amber-500';
-            break;
-        case 'Oferta': 
-            color = 'emerald'; 
-            dotColor = 'bg-emerald-500';
-            break;
-    }
-
-    return (
-        <StandardChip color={color}>
-            <span className={`w-1.5 h-1.5 rounded-full mr-2 ${dotColor}`}></span>
-            {stage}
-        </StandardChip>
-    )
-}
 
 export default CandidatesScreen;
